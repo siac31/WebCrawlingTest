@@ -1,0 +1,1594 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>CBR</title>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script
+      src="https://code.jquery.com/jquery-3.1.1.min.js"
+      integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+      crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.js"></script>
+    <script src="scripts.js"></script>
+  </head>
+  <body>
+    <!--Logout Fenster-->
+    <div class="ui tiny modal Logout">
+      <i class="close icon"></i>
+      <div class="header">
+        Logout
+      </div>
+      <div class="content">
+        <div class="description">
+          Möchten Sie wirklich die Dialogbasierteanalyse verlassen?
+          Alle ungespeicherten Fortschritte gehen verloren.
+        </div>
+      </div>
+      <div class="actions">
+        <a class="ui black button" id="hideLogout">
+            <i class="remove icon"></i>
+            Nein
+        </a>
+        <a class="ui green button" href="login.html" >
+          <i class="sign out icon"></i>
+          Ja
+        </a>
+      </div>
+    </div>
+
+  <!--Anfang der Grid-Struktur-->
+  <div id="container">
+
+    <!-- Menüleiste oben -->
+		<div class="section" id="menue_oben">
+			<div class= "column">
+				<div class="ui menu">
+				  <a class="item" href="home.html">
+                  <i class="home icon"></i>
+					Startseite
+				  </a>
+				  <div class="right menu">
+					<div class="item">
+					  <div class="ui icon input">
+						<input type="text" placeholder="Suche..." data-cip-id="cIPJQ342845640">
+						<i class="search link icon"></i>
+					  </div>
+					</div>
+          <a class="ui item">
+            Hilfe
+          </a>
+					<a class="ui item"  id="logoutButton">
+                    <i class="sign out icon"></i>
+					  Logout
+					</a>
+				  </div>
+				</div>
+			</div>
+		</div>
+
+    <!-- Spalte links -->
+		<div class="section" id="spalte_links">
+      <div class="ui vertical pointing menu" id="menuLinks">
+        <a class="item" href="Chatverlauf.html">
+            <div id="menuName">Dialog</div>
+            <div id="menuInfo" data-tooltip="Dialogbasierte Störungsdiagnose" data-position="right center">
+              <i class="info circle icon"></i>
+            </div>
+        <a class="active item" href="Fallkatalog.html">
+            <div id="menuName">Fallkatalog</div>
+            <div id="menuInfo" data-tooltip="Fälle und dessen Lösungen aus der Vergangenheit" data-position="right center">
+              <i class="info circle icon"></i>
+            </div>
+        <a class="item">
+            <div id="menuName">Fragenkatalog</div>
+            <div id="menuInfo" data-tooltip="Relevante Fragen aus der Vergangenheit" data-position="right center">
+              <i class="info circle icon"></i>
+            </div>
+        <a class="item" href="Produktionsdaten.html">
+          <div id="menuName">Produktionsdaten</div>
+          <div id="menuInfo" data-tooltip="Momentane Produktionsdaten der Anlage" data-position="right center">
+            <i class="info circle icon"></i>
+          </div>
+        </a>
+        <a class="item" href="Anlagensensorik.html">
+          <div id="menuName">Anlagensensorik</div>
+          <div id="menuInfo" data-tooltip="Sensorwerte der Anlage" data-position="right center">
+            <i class="info circle icon"></i>
+          </div>
+        </a>
+        <a class="item">
+            <div id="menuName">Abbild der Anlage</div>
+            <div id="menuInfo" data-tooltip="3D-Animation der Anlage zum eingrenzen des Fehlerorts" data-position="right center">
+              <i class="info circle icon"></i>
+            </div>
+      </div>
+      <div class="ui message" id="Schlagworte">
+        <p>Schlagworte</p>
+        <a class="ui tag label">Stempel</a>
+        <a class="ui red tag label">Zipfelabriss</a>
+        <a class="ui teal tag label">Verarbeitungssystem</a>
+        <a class="ui tag label">Lärm</a>
+        <a class="ui red tag label">....</a>
+        <a class="ui teal tag label">....</a>
+      </div>
+    </div>
+
+    <!-- Mittelbereich (Dialog, ...)-->
+  <div class="section" id="mittelbereich">
+    <!-- Kopfzeile Hauptbereich -->
+    <!-- Kopfzeile Hauptbereich -->
+
+
+    <div class="scroll-div" id="scroll">
+
+      <!-- Ab hier darf der Mittelbereich geändert werden werden -->
+    <div id="floatPanel">
+      <div class="ctrolPanel" style="right:270px;">
+        <a class="arrow" href="#">
+          <!--<span>Top</span> -->
+
+
+            <button class="ui icon button">
+             <i class="fluid angle double up icon"></i>
+            </button>
+        </a>
+        </div>
+    </div>
+
+
+
+
+
+    <div class="hyperlocation" id="location">
+
+    <h1 class="ui header">
+        <i class="browser icon"></i>
+        <div class="content">
+            Fallkatalog
+        <div class="sub header">Archiv aller bekannter Störungsfälle</div>
+        </div>
+    </h1>
+<!--    <div class="ui segments">
+        <div class="ui segment">
+        <div class="ui blue ribbon label">
+             <a name="Inhaltsverzeichnis">Inhaltsverzeichnis</a>
+          </div>
+        </div>
+        <div class="ui segment">
+        <p>
+              <a href="#Ausbringung">Stempel steckt fest</a><br>
+              <a href="#Boden">Verarbeitungssystem klemmt</a><br>
+              <a href="#Delamination">Zipfelabriss</a><br>
+              <a href="#Falten">Riss im Ziehteilrand</a><br>
+              <a href="#Lärm">Lärm von Maschine</a><br>
+              <a href="#Papier">Grobe Falten</a><br>
+              <a href="#Prozess">Unregelmäßige Oberfläche</a><br>
+              <a href="#Rand">Zipfelbildung</a><br>
+              <a href="#Stempel">Welliger Ziehteilrand</a><br>
+              <a href="#Verarbetungssystem">Ausgefranster Ziehteilrand</a><br>
+              <a href="#Zarge">Kaputtes beschichtetes Ziehteil</a><br>
+              <a href="#Ziehteil">Delamination</a><br>
+              <a href="#Ziehteilrand">Zargenriss mit Delamination</a><br>
+              <a href="#Zipfel">Bodenriss</a>
+              <a href="#Zipfel">Prozess zu langsam</a>
+              <a href="#Zipfel">Verminderte Ausbringung</a>
+              <a href="#Zipfel">Ziehteil nicht komplett gezogen</a>
+              <a href="#Zipfel">Zu niedrige Zarge </a>
+              <a href="#Zipfel">Rand bleibt stehen</a>
+              <a href="#Zipfel">Papier wird zerfetzt</a>
+              <a href="#Zipfel">Zargenriss</a>
+            </p>
+      </div>
+
+    </div>
+    </div>
+
+
+
+
+
+    <br>
+-->
+<div class="ui segment" id="casecontainer">
+<!-- Ausbrigung -->
+    <div class="ui black ribbon label" id = "Bodenriss">
+        Bodenriss
+    </div>
+    <div class="ui fluid styled accordion">
+        <!-- first box level 1-->
+        <div class="title">
+        <i class="dropdown icon"></i>
+        Zugehörige Fälle
+        </div>
+        <div class="content">
+        <!-- second box -->
+        <div class="accordion transition hidden">
+            <div class="title">
+                <i class="dropdown icon"></i>
+                Faltenhalterkraft ist zu hoch und Profil steigend
+            </div>
+            <div class="content">
+                <b>
+                Empfohlende Lösung:</b><br>
+                Faltenhalterkraft in Punkt 1 auf 6000N senken, Profil linear abfallen lassen auf 500 N
+                </p>
+            </div>
+            <div class="title">
+                <i class="dropdown icon"></i>
+                Ziehgeschwindigkeit ist zu hoch
+            </div>
+            <div class="content">
+                <p>
+                <b>
+                Empfohlende Lösung:</b><br>
+                Ziehgeschwindigkeit gleichmäßig um 20 mm/s herabsetzen
+                </p>
+            </div>
+            <div class="title">
+                <i class="dropdown icon"></i>
+                Papier dicker als eingestellt
+            </div>
+            <div class="content">
+                <p>
+                <b>
+                Empfohlende Lösung:</b><br>
+                Dünneres Papier verwenden
+                </p>
+            </div>
+            <div class="title">
+                <i class="dropdown icon"></i>
+                Material zu nass
+            </div>
+            <div class="content">
+                <p>
+                <b>
+                Empfohlende Lösung:</b><br>
+                Neue Packung Papier anfangen
+                </p>
+            </div>
+            <div class="title">
+                <i class="dropdown icon"></i>
+                Beteiligtes Ziehwerkzeug unpassend
+            </div>
+            <div class="content">
+                <p>
+                <b>
+                Empfohlende Lösung:</b><br>
+                Rundung Ziehkante (Stempel / Ziehbüchse) überprüfen
+                </p>
+            </div>
+        </div>
+        </div><!--endpoint level 1 content-->
+    </div>
+
+
+    <div class="ui black ribbon label" id = "Delamination">
+        Delamination
+    </div>
+    <div class="ui fluid styled accordion">
+        <div class="title">
+        <i class="dropdown icon"></i>
+        Zugehörige Fälle
+        </div>
+        <div class="content">
+        <div class="accordion transition hidden">
+            <div class="title">
+                <i class="dropdown icon"></i>
+                Kartonrohling verkehrt herum
+            </div>
+            <div class="content">
+                <b>
+                Empfohlende Lösung:</b><br>
+                Rohling umdrehen
+                </p>
+            </div>
+            <div class="title">
+                <i class="dropdown icon"></i>
+                Falsche Ziehbüchse
+            </div>
+            <div class="content">
+                <p>
+                <b>
+                Empfohlende Lösung:</b><br>
+                Einsatz einer anderen Ziehbüchse
+                </p>
+            </div>
+            <div class="title">
+                <i class="dropdown icon"></i>
+                Ziehbüchse überhitzt
+            </div>
+            <div class="content">
+                <p>
+                <b>
+                Empfohlende Lösung:</b><br>
+                Ziehbüchse stufenweise um 10 % abkühlen lassen
+                </p>
+            </div>
+            <div class="title">
+                <i class="dropdown icon"></i>
+                Geschwindigkeit des Stempels zu gering
+            </div>
+            <div class="content">
+                <p>
+                <b>
+                Empfohlende Lösung:</b><br>
+                Ziehgeschwindigkeit sukzessiv um 20 mm/s steigern
+                </p>
+            </div>
+            <div class="title">
+                <i class="dropdown icon"></i>
+                Zargenhöhe zu gering
+            </div>
+            <div class="content">
+                <p>
+                <b>
+                Empfohlende Lösung:</b><br>
+                Zargenhöhe auf 75-95mm erhöhen
+                </p>
+            </div>
+        </div>
+        </div>
+    </div>
+
+
+   <div class="ui black ribbon label" id = "Grobe Falten">
+        Grobe Falten
+    </div>
+    <div class="ui fluid styled accordion">
+        <div class="title">
+        <i class="dropdown icon"></i>
+        Zugehörige Fälle
+        </div>
+        <div class="content">
+        <div class="accordion transition hidden">
+            <div class="title">
+                <i class="dropdown icon"></i>
+                Material zu dünn
+            </div>
+            <div class="content">
+                <b>
+                Empfohlende Lösung:</b><br>
+                Rohling umdrehen
+                </p>
+            </div>
+            <div class="title">
+                <i class="dropdown icon"></i>
+                Falsche Ziehbüchse
+            </div>
+            <div class="content">
+                <p>
+                <b>
+                Empfohlende Lösung:</b><br>
+                Einsatz einer anderen Ziehbüchse
+                </p>
+            </div>
+            <div class="title">
+                <i class="dropdown icon"></i>
+                Ziehbüchse überhitzt
+            </div>
+            <div class="content">
+                <p>
+                <b>
+                Empfohlende Lösung:</b><br>
+                Ziehbüchse stufenweise um 10 % abkühlen lassen
+                </p>
+            </div>
+            <div class="title">
+                <i class="dropdown icon"></i>
+                Geschwindigkeit des Stempels zu gering
+            </div>
+            <div class="content">
+                <p>
+                <b>
+                Empfohlende Lösung:</b><br>
+                Ziehgeschwindigkeit sukzessiv um 20 mm/s steigern
+                </p>
+            </div>
+            <div class="title">
+                <i class="dropdown icon"></i>
+                Zargenhöhe zu gering
+            </div>
+            <div class="content">
+                <p>
+                <b>
+                Empfohlende Lösung:</b><br>
+                Zargenhöhe auf 75-95mm erhöhen
+                </p>
+            </div>
+        </div>
+        </div>
+    </div>
+   <div class="ui black ribbon label" id = "Lärm von Maschine">
+        Lärm von Maschine
+    </div>
+    <div class="ui fluid styled accordion">
+        <div class="title">
+        <i class="dropdown icon"></i>
+        Zugehörige Fälle
+        </div>
+        <div class="content">
+        <div class="accordion transition hidden">
+            <div class="title">
+                <i class="dropdown icon"></i>
+                Falsche Materialdicke eingestellt
+            </div>
+            <div class="content">
+                <b>
+                Empfohlende Lösung:</b><br>
+                Einstellung 'Materialdicke' der Dicke des Materials anpassen
+                </p>
+            </div>
+            <div class="title">
+                <i class="dropdown icon"></i>
+                Material zu dünn
+            </div>
+            <div class="content">
+                <p>
+                <b>
+                Empfohlende Lösung:</b><br>
+                Dickeres Papier verwenden (nächst Größeres oder 0,40mm)
+                </p>
+            </div>
+            <div class="title">
+                <i class="dropdown icon"></i>
+                Ziehgeschwindigkeit zu hoch
+            </div>
+            <div class="content">
+                <p>
+                <b>
+                Empfohlende Lösung:</b><br>
+                Ziehgeschwindigkeit schrittweise um 20 mm/s verringern
+                </p>
+            </div>
+            <div class="title">
+                <i class="dropdown icon"></i>
+                Falsches Kraftprofil (Faltenhalter)
+            </div>
+            <div class="content">
+                <p>
+                <b>
+                Empfohlende Lösung:</b><br>
+                lineare Kraftkurve einstellen, von 5000 N abfallend auf 500 N
+                </p>
+            </div>
+            <div class="title">
+                <i class="dropdown icon"></i>
+                Zu hoher Druck auf Faltenhalter und steigendes Kraftprofil
+            </div>
+            <div class="content">
+                <p>
+                <b>
+                Empfohlende Lösung:</b><br>
+                Faltenhalterkraft in Punkt 1 auf 6000N senken, Profil linear abfallen lassen auf 500 N
+                </p>
+            </div>
+        </div>
+        </div>
+    </div>
+
+   <div class="ui black ribbon label" id = "Oberfläche unregelmäßig">
+        Oberfläche unregelmäßig
+    </div>
+    <div class="ui fluid styled accordion">
+        <div class="title">
+        <i class="dropdown icon"></i>
+        Zugehörige Fälle
+        </div>
+        <div class="content">
+        <div class="accordion transition hidden">
+            <div class="title">
+                <i class="dropdown icon"></i>
+                Faltenhalterkraft ist zu gering
+            </div>
+            <div class="content">
+                <b>
+                Empfohlende Lösung:</b><br>
+                Faltenhalterkraft in Punkt 1 auf 6000 N erhöhen, Profil linear abfallen lassen auf 1000 N
+                </p>
+            </div>
+            <div class="title">
+                <i class="dropdown icon"></i>
+                Rohling zu dünn
+            </div>
+            <div class="content">
+                <p>
+                <b>
+                Empfohlende Lösung:</b><br>
+                Stärkeres Papier verwenden (nächst Größeres oder 0,40mm)
+                </p>
+            </div>
+            <div class="title">
+                <i class="dropdown icon"></i>
+                Inkorrekte Faltenhalterkraftkurve
+            </div>
+            <div class="content">
+                <p>
+                <b>
+                Empfohlende Lösung:</b><br>
+                Faltenhalterkraftkurve auf größten Kraftwert einstellen und die Kurve abfallen lassen
+                </p>
+            </div>
+            <div class="title">
+                <i class="dropdown icon"></i>
+                Wärmegrad der Ziehbüchse zu gering
+            </div>
+            <div class="content">
+                <p>
+                <b>
+                Empfohlende Lösung:</b><br>
+                Wärmegrad der Ziehbüchse um 20°C etappenweise steigen lassen
+                </p>
+            </div>
+            <div class="title">
+                <i class="dropdown icon"></i>
+                Papier zu nass
+            </div>
+            <div class="content">
+                <p>
+                <b>
+                Empfohlende Lösung:</b><br>
+                Papier auf Wärmequelle trocknen lassen
+                </p>
+            </div>
+        </div>
+        </div>
+    </div>
+
+
+   <div class="ui black ribbon label" id = "Papier wird zerfetzt">
+        Papier wird zerfetzt
+    </div>
+    <div class="ui fluid styled accordion">
+        <div class="title">
+        <i class="dropdown icon"></i>
+        Zugehörige Fälle
+        </div>
+        <div class="content">
+        <div class="accordion transition hidden">
+            <div class="title">
+                <i class="dropdown icon"></i>
+                Zu geringe Kraft Faltenhalter
+            </div>
+            <div class="content">
+                <b>
+                Empfohlende Lösung:</b><br>
+                Faltenhalter aktivieren mit linearem Profil (6000N auf 500N)
+                </p>
+            </div>
+            <div class="title">
+                <i class="dropdown icon"></i>
+                Kraftprofil (Faltenhalter) unpassend
+            </div>
+            <div class="content">
+                <p>
+                <b>
+                Empfohlende Lösung:</b><br>
+                Faltenhalterkraft reduzieren auf 3000N (linear abfallend auf 500N)
+                </p>
+            </div>
+            <div class="title">
+                <i class="dropdown icon"></i>
+                Material zu dick
+            </div>
+            <div class="content">
+                <p>
+                <b>
+                Empfohlende Lösung:</b><br>
+                Dünneres Papier verwenden (nächst Kleineres)
+                </p>
+            </div>
+            <div class="title">
+                <i class="dropdown icon"></i>
+                Falsches Werkzeug
+            </div>
+            <div class="content">
+                <p>
+                <b>
+                Empfohlende Lösung:</b><br>
+                Gegenchecken von Stempelform und Stempel-, sowie Ziehbüchsendurchmesser
+                </p>
+            </div>
+            <div class="title">
+                <i class="dropdown icon"></i>
+                Material zu feucht
+            </div>
+            <div class="content">
+                <p>
+                <b>
+                Empfohlende Lösung:</b><br>
+                Material über Nacht trocknen lassen
+                </p>
+            </div>
+        </div>
+        </div>
+    </div>
+
+
+   <div class="ui black ribbon label" id = "Prozess zu langsam">
+        Prozess zu langsam
+    </div>
+    <div class="ui fluid styled accordion">
+        <div class="title">
+        <i class="dropdown icon"></i>
+        Zugehörige Fälle
+        </div>
+        <div class="content">
+        <div class="accordion transition hidden">
+            <div class="title">
+                <i class="dropdown icon"></i>
+                Ziehgeschwindigkeit zu gering
+            </div>
+            <div class="content">
+                <b>
+                Empfohlende Lösung:</b><br>
+                Ziehgeschwindigkeit schrittweise um 20 mm/s erhöhen
+                </p>
+            </div>
+            <div class="title">
+                <i class="dropdown icon"></i>
+                Haltezeit zu lang
+            </div>
+            <div class="content">
+                <p>
+                <b>
+                Empfohlende Lösung:</b><br>
+                Haltezeit verringern auf 2s
+                </p>
+            </div>
+            <div class="title">
+                <i class="dropdown icon"></i>
+                Falscher Stempelweg
+            </div>
+            <div class="content">
+                <p>
+                <b>
+                Empfohlende Lösung:</b><br>
+                Zargenhöhe verringern, aber mind. 75mm
+                </p>
+            </div>
+            <div class="title">
+                <i class="dropdown icon"></i>
+                Falsches Kraftprofil (Faltenhalter)
+            </div>
+            <div class="content">
+                <p>
+                <b>
+                Empfohlende Lösung:</b><br>
+                Faltenhalterkraft in Punkt 1 auf 6000 N setzen, Profil linear abfallen lassen auf 500 N
+                </p>
+            </div>
+            <div class="title">
+                <i class="dropdown icon"></i>
+                Temperatur (Ziehbüchse) zu hoch
+            </div>
+            <div class="content">
+                <p>
+                <b>
+                Empfohlende Lösung:</b><br>
+                Temperatur (Ziehbüchse) senken auf 80/100 °C
+                </p>
+            </div>
+        </div>
+        </div>
+    </div>
+
+   <div class="ui black ribbon label" id = "Rand bleibt stehen">
+        Rand bleibt stehen
+    </div>
+    <div class="ui fluid styled accordion">
+        <div class="title">
+        <i class="dropdown icon"></i>
+        Zugehörige Fälle
+        </div>
+        <div class="content">
+        <div class="accordion transition hidden">
+            <div class="title">
+                <i class="dropdown icon"></i>
+                Zu ziehendes Teil hat zu großen Durchmesser
+            </div>
+            <div class="content">
+                <b>
+                Empfohlende Lösung:</b><br>
+                Neue Packung mit Durchmesser: 160mm
+                </p>
+            </div>
+            <div class="title">
+                <i class="dropdown icon"></i>
+                Weg des Stempels zu kurz
+            </div>
+            <div class="content">
+                <p>
+                <b>
+                Empfohlende Lösung:</b><br>
+                Weg des Stempels auf 75mm erhöhen
+                </p>
+            </div>
+            <div class="title">
+                <i class="dropdown icon"></i>
+                Papier schief eingelegt
+            </div>
+            <div class="content">
+                <p>
+                <b>
+                Empfohlende Lösung:</b><br>
+                Achtsames und korrektes Einlegen des Papiers
+                </p>
+            </div>
+            <div class="title">
+                <i class="dropdown icon"></i>
+                Zu dünnes Papier gewählt
+            </div>
+            <div class="content">
+                <p>
+                <b>
+                Empfohlende Lösung:</b><br>
+                Papier mit größerer Dicke verwenden
+                </p>
+            </div>
+            <div class="title">
+                <i class="dropdown icon"></i>
+                Kraftprofil des Faltenhalters inkorrekt
+            </div>
+            <div class="content">
+                <p>
+                <b>
+                Empfohlende Lösung:</b><br>
+                Einstellung des Kraftprofils: von 6000N auf 500N linear abfallend
+                </p>
+            </div>
+        </div>
+        </div>
+    </div>
+
+   <div class="ui black ribbon label" id = "Stempel steckt fest">
+        Stempel steckt fest
+    </div>
+    <div class="ui fluid styled accordion">
+        <div class="title">
+        <i class="dropdown icon"></i>
+        Zugehörige Fälle
+        </div>
+        <div class="content">
+        <div class="accordion transition hidden">
+            <div class="title">
+                <i class="dropdown icon"></i>
+                Umformkraft zu niedrig
+            </div>
+            <div class="content">
+                <b>
+                Empfohlende Lösung:</b><br>
+                Maximale Stempelkraft auf 20000N erhöhen
+                </p>
+            </div>
+            <div class="title">
+                <i class="dropdown icon"></i>
+                Material zu dick
+            </div>
+            <div class="content">
+                <p>
+                <b>
+                Empfohlende Lösung:</b><br>
+                Dünneres Papier verwenden (0,40mm)
+                </p>
+            </div>
+            <div class="title">
+                <i class="dropdown icon"></i>
+                Zuschnitt nicht mittig eingelegt
+            </div>
+            <div class="content">
+                <p>
+                <b>
+                Empfohlende Lösung:</b><br>
+                Papier gerade und mittig einlegen, an der Einschubpassung orientieren
+                </p>
+            </div>
+            <div class="title">
+                <i class="dropdown icon"></i>
+                Falsches Kraftprofil (Faltenhalter)
+            </div>
+            <div class="content">
+                <p>
+                <b>
+                Empfohlende Lösung:</b><br>
+                Lineares Kraftprofil verwenden (von 6000 N auf 500 N)
+                </p>
+            </div>
+            <div class="title">
+                <i class="dropdown icon"></i>
+                Material zu feucht
+            </div>
+            <div class="content">
+                <p>
+                <b>
+                Empfohlende Lösung:</b><br>
+                Papier auf der Heizung trocknen
+                </p>
+            </div>
+        </div>
+        </div>
+    </div>
+
+
+   <div class="ui black ribbon label" id = "Verarbeitungssystem klemmt">
+        Verarbeitungssystem klemmt
+    </div>
+    <div class="ui fluid styled accordion">
+        <div class="title">
+        <i class="dropdown icon"></i>
+        Zugehörige Fälle
+        </div>
+        <div class="content">
+        <div class="accordion transition hidden">
+            <div class="title">
+                <i class="dropdown icon"></i>
+                Rohling zu stark (Dicke)
+            </div>
+            <div class="content">
+                <b>
+                Empfohlende Lösung:</b><br>
+                Packung mit nächst dünneren Rohlingen verwenden
+                </p>
+            </div>
+            <div class="title">
+                <i class="dropdown icon"></i>
+                Kraft des Stempels zu niedrig
+            </div>
+            <div class="content">
+                <p>
+                <b>
+                Empfohlende Lösung:</b><br>
+                Stempelkraft auf Maximalwert von 20000N heraufsetzen
+                </p>
+            </div>
+            <div class="title">
+                <i class="dropdown icon"></i>
+                Zuschnitt nicht mittig eingelegt
+            </div>
+            <div class="content">
+                <p>
+                <b>
+                Empfohlende Lösung:</b><br>
+                Papier gerade und mittig einlegen, an der Einschubpassung orientieren
+                </p>
+            </div>
+            <div class="title">
+                <i class="dropdown icon"></i>
+                Falsches Kraftprofil (Faltenhalter)
+            </div>
+            <div class="content">
+                <p>
+                <b>
+                Empfohlende Lösung:</b><br>
+                Lineares Kraftprofil verwenden (von 6000 N auf 500 N)
+                </p>
+            </div>
+            <div class="title">
+                <i class="dropdown icon"></i>
+                Material zu feucht
+            </div>
+            <div class="content">
+                <p>
+                <b>
+                Empfohlende Lösung:</b><br>
+                Papier auf der Heizung trocknen
+                </p>
+            </div>
+        </div>
+        </div>
+    </div>
+
+
+   <div class="ui black ribbon label" id = "Verminderte Ausbringung">
+        Verminderte Ausbringung
+    </div>
+    <div class="ui fluid styled accordion">
+        <div class="title">
+        <i class="dropdown icon"></i>
+        Zugehörige Fälle
+        </div>
+        <div class="content">
+        <div class="accordion transition hidden">
+            <div class="title">
+                <i class="dropdown icon"></i>
+                Haltezeit zu lang
+            </div>
+            <div class="content">
+                <b>
+                Empfohlende Lösung:</b><br>
+                Haltezeit auf 2s herabsetzen
+                </p>
+            </div>
+            <div class="title">
+                <i class="dropdown icon"></i>
+                Prozessgeschwindigkeit zu niedrig eingestellt
+            </div>
+            <div class="content">
+                <p>
+                <b>
+                Empfohlende Lösung:</b><br>
+                Geschwindigkeit nach und nach um 20mm/s anheben
+                </p>
+            </div>
+            <div class="title">
+                <i class="dropdown icon"></i>
+                Stempelweg zu tief
+            </div>
+            <div class="content">
+                <p>
+                <b>
+                Empfohlende Lösung:</b><br>
+                Stempelweg reduzieren, allerdings max. bis 75mm
+                </p>
+            </div>
+            <div class="title">
+                <i class="dropdown icon"></i>
+                Fehlerhafte Kraftkurve (Faltenhalter)
+            </div>
+            <div class="content">
+                <p>
+                <b>
+                Empfohlende Lösung:</b><br>
+                Das Kraftprofil bei 6000 N starten und auf 500 N abfallen lassen
+                </p>
+            </div>
+            <div class="title">
+                <i class="dropdown icon"></i>
+                Formelement zu heiß
+            </div>
+            <div class="content">
+                <p>
+                <b>
+                Empfohlende Lösung:</b><br>
+                Temperatur des Formelements auf 80/100 °C heruntersetzen
+                </p>
+            </div>
+        </div>
+        </div>
+    </div>
+
+
+   <div class="ui black ribbon label" id = "Zargenriss">
+        Zargenriss
+    </div>
+    <div class="ui fluid styled accordion">
+        <div class="title">
+        <i class="dropdown icon"></i>
+        Zugehörige Fälle
+        </div>
+        <div class="content">
+        <div class="accordion transition hidden">
+            <div class="title">
+                <i class="dropdown icon"></i>
+                Falsches Kraftprofil (Faltenhalter)
+            </div>
+            <div class="content">
+                <b>
+                Empfohlende Lösung:</b><br>
+                Faltenhalterkraft auf 3000N hochsetzen und dann bis 500N linear abfallen lassen
+                </p>
+            </div>
+            <div class="title">
+                <i class="dropdown icon"></i>
+                Einstellung der Stempelkraft zu hoch
+            </div>
+            <div class="content">
+                <p>
+                <b>
+                Empfohlende Lösung:</b><br>
+                Einstellen eines linear von 6000N auf 500N abfallenden Profils
+                </p>
+            </div>
+            <div class="title">
+                <i class="dropdown icon"></i>
+                Zu dicken Rohling eingelegt
+            </div>
+            <div class="content">
+                <p>
+                <b>
+                Empfohlende Lösung:</b><br>
+                Nächsten dünneren Rohling einlegen, alternativ einen Kleineren
+                </p>
+            </div>
+            <div class="title">
+                <i class="dropdown icon"></i>
+                Ungeeignete Maschinenteile eingebaut
+            </div>
+            <div class="content">
+                <p>
+                <b>
+                Empfohlende Lösung:</b><br>
+                Überprüfen, ob prozessbeteiligte Maschinenteile richtig gewählt sind
+                </p>
+            </div>
+            <div class="title">
+                <i class="dropdown icon"></i>
+                Feuchtigkeit des Rohlings zu hoch
+            </div>
+            <div class="content">
+                <p>
+                <b>
+                Empfohlende Lösung:</b><br>
+                Rohling ausreichend trocknen lassen
+                </p>
+            </div>
+        </div>
+        </div>
+    </div>
+
+
+   <div class="ui black ribbon label" id = "Zargenriss mit Delamination">
+        Zargenriss mit Delamination
+    </div>
+    <div class="ui fluid styled accordion">
+        <div class="title">
+        <i class="dropdown icon"></i>
+        Zugehörige Fälle
+        </div>
+        <div class="content">
+        <div class="accordion transition hidden">
+            <div class="title">
+                <i class="dropdown icon"></i>
+                Ziehbüchse zu heiß
+            </div>
+            <div class="content">
+                <b>
+                Empfohlende Lösung:</b><br>
+                Temperatur der Ziehbüchse stufenweise um 10 % abkühlen lassen
+                </p>
+            </div>
+            <div class="title">
+                <i class="dropdown icon"></i>
+                Ziehgeschwindigkeit zu langsam
+            </div>
+            <div class="content">
+                <p>
+                <b>
+                Empfohlende Lösung:</b><br>
+                Ziehgeschwindigkeit etappenweise um 20 mm/s ansteigen lassen
+                </p>
+            </div>
+            <div class="title">
+                <i class="dropdown icon"></i>
+                Ziehtiefe zu gering
+            </div>
+            <div class="content">
+                <p>
+                <b>
+                Empfohlende Lösung:</b><br>
+                Zargenhöhe auf 90 - 100mm erhöhen
+                </p>
+            </div>
+            <div class="title">
+                <i class="dropdown icon"></i>
+                Falsche Seite des Rohlings tiefgezogen
+            </div>
+            <div class="content">
+                <p>
+                <b>
+                Empfohlende Lösung:</b><br>
+                Papierrohling umdrehen
+                </p>
+            </div>
+            <div class="title">
+                <i class="dropdown icon"></i>
+                Ziehbüchse passt nicht zu diesem Rohling
+            </div>
+            <div class="content">
+                <p>
+                <b>
+                Empfohlende Lösung:</b><br>
+                Anders beschichtete Ziehbüchse verwenden
+                </p>
+            </div>
+        </div>
+        </div>
+    </div>
+
+
+   <div class="ui black ribbon label" id = "Zarge zu niedrig">
+        Zarge zu niedrig
+    </div>
+    <div class="ui fluid styled accordion">
+        <div class="title">
+        <i class="dropdown icon"></i>
+        Zugehörige Fälle
+        </div>
+        <div class="content">
+        <div class="accordion transition hidden">
+            <div class="title">
+                <i class="dropdown icon"></i>
+                Rohling zu klein
+            </div>
+            <div class="content">
+                <b>
+                Empfohlende Lösung:</b><br>
+                Rohling mit mind. 160mm Durchmesser verwenden
+                </p>
+            </div>
+            <div class="title">
+                <i class="dropdown icon"></i>
+                Stempelweg verlängern
+            </div>
+            <div class="content">
+                <p>
+                <b>
+                Empfohlende Lösung:</b><br>
+                Stempelweg auf 75mm einstellen
+                </p>
+            </div>
+            <div class="title">
+                <i class="dropdown icon"></i>
+                Einlage des Rohlings nicht mittig
+            </div>
+            <div class="content">
+                <p>
+                <b>
+                Empfohlende Lösung:</b><br>
+                Rohling exakt mittig einlegen
+                </p>
+            </div>
+            <div class="title">
+                <i class="dropdown icon"></i>
+                Zu geringe Dicke des Rohlings
+            </div>
+            <div class="content">
+                <p>
+                <b>
+                Empfohlende Lösung:</b><br>
+                Nächst Größeren oder Rohling mit Dicke: 0,40 mm einlegen
+                </p>
+            </div>
+            <div class="title">
+                <i class="dropdown icon"></i>
+                Nicht-lineares Kraftprofil des Faltenhalters
+            </div>
+            <div class="content">
+                <p>
+                <b>
+                Empfohlende Lösung:</b><br>
+                Kraftprofil des Faltenhalters von 6000N auf 500N linear abfallen lassen
+                </p>
+            </div>
+        </div>
+        </div>
+    </div>
+
+   <div class="ui black ribbon label" id = "Ziehteil nicht komplett gezogen">
+        Ziehteil nicht komplett gezogen
+    </div>
+    <div class="ui fluid styled accordion">
+        <div class="title">
+        <i class="dropdown icon"></i>
+        Zugehörige Fälle
+        </div>
+        <div class="content">
+        <div class="accordion transition hidden">
+            <div class="title">
+                <i class="dropdown icon"></i>
+                Ziehhöhe zu kurz
+            </div>
+            <div class="content">
+                <b>
+                Empfohlende Lösung:</b><br>
+                Einstellung der Ziehhöhe anpassen (in Normbereich)
+                </p>
+            </div>
+            <div class="title">
+                <i class="dropdown icon"></i>
+                zu kleiner Zuschnitt
+            </div>
+            <div class="content">
+                <p>
+                <b>
+                Empfohlende Lösung:</b><br>
+                Größeren Zuschnitt verwenden (Durchmesser: 160mm)
+                </p>
+            </div>
+            <div class="title">
+                <i class="dropdown icon"></i>
+                Zuschnitt falsch eingelegt
+            </div>
+            <div class="content">
+                <p>
+                <b>
+                Empfohlende Lösung:</b><br>
+                Neuen Zuschnitt wie vorgegeben einlegen
+                </p>
+            </div>
+            <div class="title">
+                <i class="dropdown icon"></i>
+                Material zu dünn
+            </div>
+            <div class="content">
+                <p>
+                <b>
+                Empfohlende Lösung:</b><br>
+                Dickeres Material verwenden (nächst Größeres oder 0,40 mm)
+                </p>
+            </div>
+            <div class="title">
+                <i class="dropdown icon"></i>
+                falsches Kraftprofil (Faltenhalter)
+            </div>
+            <div class="content">
+                <p>
+                <b>
+                Empfohlende Lösung:</b><br>
+                lineares Kraftprofil verwenden (von 6000 N auf 500 N)
+                </p>
+            </div>
+        </div>
+        </div>
+    </div>
+
+   <div class="ui black ribbon label" id = "Ziehteil (beschichtet) geht kaputt">
+        Ziehteil (beschichtet) geht kaputt
+    </div>
+    <div class="ui fluid styled accordion">
+        <div class="title">
+        <i class="dropdown icon"></i>
+        Zugehörige Fälle
+        </div>
+        <div class="content">
+        <div class="accordion transition hidden">
+            <div class="title">
+                <i class="dropdown icon"></i>
+                Ziehgeschwindigkeit zu niedrig
+            </div>
+            <div class="content">
+                <b>
+                Empfohlende Lösung:</b><br>
+                Ziehgeschwindigkeit schrittweise um 20 mm/s erhöhen
+                </p>
+            </div>
+            <div class="title">
+                <i class="dropdown icon"></i>
+                Stempelweg zu gering
+            </div>
+            <div class="content">
+                <p>
+                <b>
+                Empfohlende Lösung:</b><br>
+                Stempelweg auf 75-95mm erhöhen
+                </p>
+            </div>
+            <div class="title">
+                <i class="dropdown icon"></i>
+                falsche Papierseite gezogen
+            </div>
+            <div class="content">
+                <p>
+                <b>
+                Empfohlende Lösung:</b><br>
+                Papierrohling umdrehen
+                </p>
+            </div>
+            <div class="title">
+                <i class="dropdown icon"></i>
+                Temperatur (Ziehbüchse) zu hoch
+            </div>
+            <div class="content">
+                <p>
+                <b>
+                Empfohlende Lösung:</b><br>
+                Temperatur (Ziehbüchse) schrittweise um 10 % senken
+                </p>
+            </div>
+            <div class="title">
+                <i class="dropdown icon"></i>
+                falsches Werkzeug
+            </div>
+            <div class="content">
+                <p>
+                <b>
+                Empfohlende Lösung:</b><br>
+                andere Ziehbüchse verwenden
+                </p>
+            </div>
+        </div>
+        </div>
+    </div>
+
+   <div class="ui black ribbon label" id = "Ziehteilrand ausgefranst">
+        Ziehteilrand ausgefranst
+    </div>
+    <div class="ui fluid styled accordion">
+        <div class="title">
+        <i class="dropdown icon"></i>
+        Zugehörige Fälle
+        </div>
+        <div class="content">
+        <div class="accordion transition hidden">
+            <div class="title">
+                <i class="dropdown icon"></i>
+                Wirkung des Faltenhalters zu stark
+            </div>
+            <div class="content">
+                <b>
+                Empfohlende Lösung:</b><br>
+                Kraftwirkung des Faltenhalters auf 1000N senken
+                </p>
+            </div>
+            <div class="title">
+                <i class="dropdown icon"></i>
+                inkorrekte Kraftkurve (Faltenhalter)
+            </div>
+            <div class="content">
+                <p>
+                <b>
+                Empfohlende Lösung:</b><br>
+                starke Kraftausübung des Faltenhalters am Ende des Tiefziehprozesses unterbinden
+                </p>
+            </div>
+            <div class="title">
+                <i class="dropdown icon"></i>
+                Material zu stark
+            </div>
+            <div class="content">
+                <p>
+                <b>
+                Empfohlende Lösung:</b><br>
+                Feineres Material einlegen (0,40mm)
+                </p>
+            </div>
+            <div class="title">
+                <i class="dropdown icon"></i>
+                Papier zu nass
+            </div>
+            <div class="content">
+                <p>
+                <b>
+                Empfohlende Lösung:</b><br>
+                neue Packung trockenen Papiers beginnen
+                </p>
+            </div>
+            <div class="title">
+                <i class="dropdown icon"></i>
+                Ziehbüchse übermäßig erhitzt
+            </div>
+            <div class="content">
+                <p>
+                <b>
+                Empfohlende Lösung:</b><br>
+                Temperatur kontrollieren und gegebenfalls auf 110°C herabsetzen
+                </p>
+            </div>
+        </div>
+        </div>
+    </div>
+
+   <div class="ui black ribbon label" id = "Ziehteilrand wellig">
+        Ziehteilrand wellig
+    </div>
+    <div class="ui fluid styled accordion">
+        <div class="title">
+        <i class="dropdown icon"></i>
+        Zugehörige Fälle
+        </div>
+        <div class="content">
+        <div class="accordion transition hidden">
+            <div class="title">
+                <i class="dropdown icon"></i>
+                Faltenhalterwirkung ist zu hoch
+            </div>
+            <div class="content">
+                <b>
+                Empfohlende Lösung:</b><br>
+                Faltenhalterkraft verringern auf 1000N
+                </p>
+            </div>
+            <div class="title">
+                <i class="dropdown icon"></i>
+                fehlerhaftes Kraftprofil (Faltenhalter)
+            </div>
+            <div class="content">
+                <p>
+                <b>
+                Empfohlende Lösung:</b><br>
+                Die letzten Punkte der Kraftvorgabe sollten niedrig sein und konstant bei 500 N bleiben, damit keine zu hohen Kräfte auf den äußeren Rand des Papiers wirken
+                </p>
+            </div>
+            <div class="title">
+                <i class="dropdown icon"></i>
+                Kartonrohling zu dick
+            </div>
+            <div class="content">
+                <p>
+                <b>
+                Empfohlende Lösung:</b><br>
+                Feineren Karton einsetzen (0,40mm)
+                </p>
+            </div>
+            <div class="title">
+                <i class="dropdown icon"></i>
+                Kartonrohling zu feucht
+            </div>
+            <div class="content">
+                <p>
+                <b>
+                Empfohlende Lösung:</b><br>
+                Neue trockene Kartonrohlinge einsetzen
+                </p>
+            </div>
+            <div class="title">
+                <i class="dropdown icon"></i>
+                Wärmegrad der Ziehbüchse zu hoch
+            </div>
+            <div class="content">
+                <p>
+                <b>
+                Empfohlende Lösung:</b><br>
+                Wärmegrad der Ziehbüchse auf 110 °C senken
+                </p>
+            </div>
+        </div>
+        </div>
+    </div>
+
+
+   <div class="ui black ribbon label" id = "Zipfelabriss">
+        Zipfelabriss
+    </div>
+    <div class="ui fluid styled accordion">
+        <div class="title">
+        <i class="dropdown icon"></i>
+        Zugehörige Fälle
+        </div>
+        <div class="content">
+        <div class="accordion transition hidden">
+            <div class="title">
+                <i class="dropdown icon"></i>
+                falsches Kraftprofil (Faltenhalter)
+            </div>
+            <div class="content">
+                <b>
+                Empfohlende Lösung:</b><br>
+                lineares Kraftprofil verwenden / Kraftprofil + Stempelweg überprüfen
+                </p>
+            </div>
+            <div class="title">
+                <i class="dropdown icon"></i>
+                Faltenhalterkraft ist zu hoch und Profil steigend
+            </div>
+            <div class="content">
+                <p>
+                <b>
+                Empfohlende Lösung:</b><br>
+                Faltenhalterkraft in Punkt 1 auf 2000 N setzen, Profil linear abfallen lassen auf 500 N
+                </p>
+            </div>
+            <div class="title">
+                <i class="dropdown icon"></i>
+                Material zu dick
+            </div>
+            <div class="content">
+                <p>
+                <b>
+                Empfohlende Lösung:</b><br>
+                Dünneres Papier verwenden (nächst Kleineres oder 0,40mm)
+                </p>
+            </div>
+            <div class="title">
+                <i class="dropdown icon"></i>
+                Material zu feucht
+            </div>
+            <div class="content">
+                <p>
+                <b>
+                Empfohlende Lösung:</b><br>
+                Neue Packung Papier anfangen / Raumfeuchtigkeit überprüfen
+                </p>
+            </div>
+            <div class="title">
+                <i class="dropdown icon"></i>
+                Temperatur (Ziehbüchse) zu hoch
+            </div>
+            <div class="content">
+                <p>
+                <b>
+                Empfohlende Lösung:</b><br>
+                Temperatur (Ziehbüchse) schrittweise um 10 % senken
+                </p>
+            </div>
+        </div>
+        </div>
+    </div>
+
+   <div class="ui black ribbon label" id = "Zipfelbildung">
+        Zipfelbildung
+    </div>
+    <div class="ui fluid styled accordion">
+        <div class="title">
+        <i class="dropdown icon"></i>
+        Zugehörige Fälle
+        </div>
+        <div class="content">
+        <div class="accordion transition hidden">
+            <div class="title">
+                <i class="dropdown icon"></i>
+                falsches Kraftprofil (Faltenhalter)
+            </div>
+            <div class="content">
+                <b>
+                Empfohlende Lösung:</b><br>
+                hohe Faltenhalterkräfte am Ende des Papierzuschnittes vermeiden
+                </p>
+            </div>
+            <div class="title">
+                <i class="dropdown icon"></i>
+                Faltenhalterkraft ist zu hoch
+            </div>
+            <div class="content">
+                <p>
+                <b>
+                Empfohlende Lösung:</b><br>
+                Faltenhalterkraft verringern auf 1000N (bei Faltenhalterkraft ist konstant wäre es: Faltenhalterkraft mit linearem Profil (6000N auf 500N)
+                </p>
+            </div>
+            <div class="title">
+                <i class="dropdown icon"></i>
+                Material zu dick
+            </div>
+            <div class="content">
+                <p>
+                <b>
+                Empfohlende Lösung:</b><br>
+                Dünneres Material verwenden (0,40mm)
+                </p>
+            </div>
+            <div class="title">
+                <i class="dropdown icon"></i>
+                Material zu feucht
+            </div>
+            <div class="content">
+                <p>
+                <b>
+                Empfohlende Lösung:</b><br>
+                Neue Packung Papier anfangen
+                </p>
+            </div>
+            <div class="title">
+                <i class="dropdown icon"></i>
+                Temperatur (Ziehbüchse) zu hoch
+            </div>
+            <div class="content">
+                <p>
+                <b>
+                Empfohlende Lösung:</b><br>
+                Temperatur der Ziehbüchse auf 110 °C senken
+                </p>
+            </div>
+        </div>
+        </div>
+    </div>
+</div><!--END OF SEGMENT-->
+
+      <!-- Ab hier Mittelbereich nicht mehr ändern-->
+    </div>
+  </div></div><!-- Ende Mittelbereich -->
+
+    <!--Spalte rechts-->
+    <div class="section" id="spalte_rechts">
+      <div class="ui vertical left text menu">
+        <a class="active item">
+          Relevanteste Fälle:
+        </a>
+        <a class="item">
+          Fall 1
+        </a>
+        <a class="item">
+          Fall 2
+        </a>
+        <a class="item">
+          Fall 3
+        </a>
+        <a class="item">
+          Fall 4
+        </a>
+      </div>
+    </div>
+  </div><!--Ende der Grid-Struktur-->
+
+  </body>
+</html>

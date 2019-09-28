@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>CBR</title>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script
+      src="https://code.jquery.com/jquery-3.1.1.min.js"
+      integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+      crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.js"></script>
+    <script src="scripts.js"></script>
+  </head>
+  <body>
+    <!--Logout Fenster-->
+    <div class="ui tiny modal Logout">
+      <i class="close icon"></i>
+      <div class="header">
+        Logout
+      </div>
+      <div class="content">
+        <div class="description">
+          Möchten Sie wirklich die Dialogbasierteanalyse verlassen?
+          Alle ungespeicherten Fortschritte gehen verloren.
+        </div>
+      </div>
+      <div class="actions">
+        <a class="ui black button" id="hideLogout">
+            <i class="remove icon"></i>
+            Nein
+        </a>
+        <a class="ui green button" href="login.html" >
+          <i class="sign out icon"></i>
+          Ja
+        </a>
+      </div>
+    </div>
+
+  <!--Anfang der Grid-Struktur-->
+  <div id="container">
+
+    <!-- Menüleiste oben -->
+		<div class="section" id="menue_oben">
+			<div class= "column">
+				<div class="ui menu">
+				  <a class="item" href="home.html">
+                  <i class="home icon"></i>
+					Startseite
+				  </a>
+				  <div class="right menu">
+					<div class="item">
+					  <div class="ui icon input">
+						<input type="text" placeholder="Suche..." data-cip-id="cIPJQ342845640">
+						<i class="search link icon"></i>
+					  </div>
+					</div>
+          <a class="ui item">
+            Hilfe
+          </a>
+					<a class="ui item"  id="logoutButton">
+                    <i class="sign out icon"></i>
+					  Logout
+					</a>
+				  </div>
+				</div>
+			</div>
+		</div>
+
+    <!-- Spalte links -->
+		<div class="section" id="spalte_links">
+      <div class="ui vertical pointing menu" id="menuLinks">
+        <a class="item" href="Fallkatalog.html">
+            <div id="menuName">Fallkatalog</div>
+            <div id="menuInfo" data-tooltip="Archiv aller bekannter Störungsfälle" data-position="right center">
+              <i class="info circle icon"></i>
+            </div>
+        <a class="item">
+            <div id="menuName">Fragenkatalog</div>
+            <div id="menuInfo" data-tooltip="Archiv aller Systemfragen zur Falleingrenzung" data-position="right center">
+              <i class="info circle icon"></i>
+            </div>
+        <a class="item" href="Produktionsdaten.html">
+          <div id="menuName">Produktionsdaten</div>
+          <div id="menuInfo" data-tooltip="Momentane Produktionsdaten der Anlage" data-position="right center">
+            <i class="info circle icon"></i>
+          </div>
+        </a>
+        <a class="item" href="Anlagensensorik.html">
+          <div id="menuName">Anlagensensorik</div>
+          <div id="menuInfo" data-tooltip="Sensorwerte der Verarbeitungsanlage" data-position="right center">
+            <i class="info circle icon"></i>
+          </div>
+        </a>
+        <a class="item">
+            <div id="menuName">Abbild der Anlage</div>
+            <div id="menuInfo" data-tooltip="3D-Animation der Verarbeitungsanlage (Räumliche Eingrenzung des Störungsursache möglich)" data-position="right center">
+              <i class="info circle icon"></i>
+            </div>
+      </div>
+      <div class="ui message" id="Schlagworte">
+        <p>Schlagworte</p>
+        <a class="ui tag label">Stempel</a>
+        <a class="ui red tag label">Zipfelabriss</a>
+        <a class="ui teal tag label">Verarbeitungssystem</a>
+        <a class="ui tag label">Lärm</a>
+        <a class="ui red tag label">....</a>
+        <a class="ui teal tag label">....</a>
+      </div>
+    </div>
+
+    <!-- Mittelbereich (Dialog, ...)-->
+    <div class="section" id="mittelbereich">
+      <!-- Kopfzeile Hauptbereich
+      <div id="kopfzeile_dialog">
+        <h1> Dialog/Fragenkatalog/Fallkatalog </h1>
+      </div> -->
+
+      <div class="scroll-div" id="scroll">
+
+        <!-- Ab hier darf der Mittelbereich geändert werden werden -->
+          <!-- Dialogbereich im Mittelbereich -->
+            <h1 class="ui header">
+                <i class="home icon"></i>
+                <div class="content">
+                Startseite
+                <div class="sub header">Herzlich Willkommen, <script>document.write(""+localStorage.userN+"")</script> </div>
+                </div>
+            </h1>
+            <h2 class="ui header">
+                <div class="content">
+                <p></p>
+                Aktuelle Störmeldungen &nbsp
+                <div id="menuInfo" data-tooltip="Fehlzustände der Anlagensensorik" data-position="right center">
+                <i class="info circle icon"></i>
+                </div>
+                </div>
+            </h2>
+            <div class="ui styled fluid accordion">
+                <div class="title">
+                 <i class="dropdown icon"></i>
+                 Derzeit stehen keine relevanten Informationen zur Verfügung
+                </div>
+                <div class="content">
+                 <p class="transition hidden">Der Anlagensensorik konnten keine sinnvollen Informationen abgewonnen werden.</p>
+                </div>
+                <div class="title">
+                 <i class="dropdown icon"></i>
+                 ...
+                </div>
+                <div class="content">
+                 <p class="transition hidden">...</p>
+                </div>
+                <div class="title">
+                 <i class="dropdown icon"></i>
+                 ...
+                </div>
+                <div class="content">
+                 <p class="transition hidden">...</p>
+                </div>
+            </div>
+            <h2 class="ui header"><div class="content"><p></p></div></h2>
+            <div class="ui icon message">
+                <i class="info icon"></i>
+                <div class="content">
+                    <div class="header">
+                    Welche Möglichkeiten stehen Ihnen mit dem CBR-System zur Verfügung?
+                    </div>
+                    <p>Betätigen Sie den Button <b>Diagnose starten</b>, wenn Sie umgehend mit der dialogbasierten Störungsdiagnose beginnen möchten. Sie haben alternativ die Möglichkeit, über das Menü eigenständig auf die Informationen der Anlage, sowie bekannte Fälle zuzugreifen. Wenn Sie auf die dialogbasierte Analyse verzichten möchten, können sie über den Menüpunkt <b>Fragkatalog</b> eigenständig Fragen auswählen, die Sie beantworten möchten (nicht empfohlen).</p>
+                </div>
+            </div>
+            <a class="positive big ui right floated button" href="Chatverlauf.html">
+            Diagnose starten
+          </a>
+        </div>
+      </div><!-- Ende Mittelbereich -->
+
+    <!--Spalte rechts-->
+    <div class="section" id="spalte_rechts">
+      <div class="ui vertical left text menu">
+        <a class="active item">
+          Relevanteste Fälle:
+        </a>
+        <a class="item">
+          Fall 1
+        </a>
+        <a class="item">
+          Fall 2
+        </a>
+        <a class="item">
+          Fall 3
+        </a>
+        <a class="item">
+          Fall 4
+        </a>
+      </div>
+    </div>
+  </div><!--Ende der Grid-Struktur-->
+
+  </body>
+</html>
